@@ -18,8 +18,6 @@
 
   <li>Start the Symfony server:</li>
   <pre><code>symfony server:start</code></pre>
-</ol>
-<ol>
   <li>Install the ORM Pack for database management:</li>
   <pre><code>composer req symfony/orm-pack</code></pre>
 

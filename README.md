@@ -2,7 +2,6 @@
 
 ## Setting Up the Project
 
-```html
 <ol>
   <li>Navigate to the <code>htdocs</code> directory in XAMPP:</li>
   <ul>
@@ -48,4 +47,3 @@
   <li>Create a form:</li>
   <pre><code>php bin/console make:form</code></pre>
 </ol>
-```

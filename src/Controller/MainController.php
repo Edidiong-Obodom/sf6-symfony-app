@@ -21,7 +21,7 @@ class MainController extends AbstractController
     #[Route('/', name: 'app_main')]
     public function index(): Response
     {
-        $posts = $this -> em -> getRepository(Post::class) -> findAll();
+        $posts = $this->em->getRepository(Post::class)->findAll();
         return $this->render('main/index.html.twig', [
             'posts' => $posts,
         ]);
@@ -38,8 +38,8 @@ class MainController extends AbstractController
             $this->em->persist($post);
             $this->em->flush();
 
-            $this -> addFlash('message', 'Inserted Successfully.');
-            return $this -> redirectToRoute("app_main");
+            $this->addFlash('message', 'Inserted Successfully.');
+            return $this->redirectToRoute("app_main");
         }
 
         return $this->render("main/post.html.twig", ['form' => $form->createView()]);
@@ -48,8 +48,32 @@ class MainController extends AbstractController
     #[Route('/edit-post/{id}', name: 'edit-post')]
     public function editPost(Request $request, $id)
     {
-        dd($id);
+        // dd($id); //displays data
+
+        $post = $this->em->getRepository(Post::class)->find($id);
+        $form = $this->createForm(PostType::class, $post);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->em->persist($post);
+            $this->em->flush();
+
+            $this->addFlash('message', 'Updated Successfully.');
+            return $this->redirectToRoute("app_main");
+        }
 
         return $this->render("main/post.html.twig", ['form' => $form->createView()]);
+    }
+
+    #[Route('/delete-post/{id}', name: 'delete-post')]
+    public function deletePost(Request $request, $id)
+    {
+        $post = $this->em->getRepository(Post::class)->find($id);
+
+        $this->em->remove($post);
+        $this->em->flush();
+
+        $this->addFlash('message', 'Deleted Successfully.');
+        return $this->redirectToRoute("app_main");
     }
 }

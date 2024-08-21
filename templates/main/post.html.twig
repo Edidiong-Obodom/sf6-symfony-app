@@ -1,10 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Create Post
+{% block title %}{{form.vars.data.id is null ? 'Create Post' : 'Edit Post'}}
 {% endblock %}
 
 {% block body %}
-	<div class="mt-4">
+	<div
+		class="mt-4">
+		{# {{ dump(form.vars.data) }} #}
+		<h3>{{form.vars.data.id is null ? 'Create Post' : 'Edit Post'}}</h3>
 		{{form_start(form)}}
 		<div class="form-group">
 			{{form_label(form.title)}}
@@ -14,7 +17,10 @@
 			{{form_label(form.content)}}
 			{{form_widget(form.content, {'attr': {'class': 'form-control'}})}}
 		</div>
-		{{form_widget(form.save, {'attr': {'class': 'btn btn-primary mt-3', 'type': 'submit'}})}}
+		{# {{form_widget(form.save, {'attr': {'class': 'btn btn-primary mt-3', 'type': 'submit'}})}} #}
+		<button type="submit" class="btn btn-primary mt-2">
+			{{form.vars.data.id is null ? 'Create Post' : 'Edit Post'}}
+		</button>
 		{{form_end(form)}}
 	</div>
 {% endblock %}

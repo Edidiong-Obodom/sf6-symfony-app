@@ -25,7 +25,7 @@
 					<td>{{post.title}}</td>
 					<td>
 						<a href="{{ path('edit-post', {id: post.id}) }}" class="btn btn-success">Edit</a>
-						<a href="" class="btn btn-danger">delete</a>
+						<a href="{{ path('delete-post', {id: post.id}) }}" class="btn btn-danger">delete</a>
 					</td>
 				</tr>
 			{% endfor %}

@@ -27,7 +27,7 @@ class PostType extends AbstractType
                     'placeholder' => 'What\'s on your mind?'
                 ]
             ])
-            ->add('save', SubmitType::class)
+            // ->add('save', SubmitType::class)
         ;
     }
 
